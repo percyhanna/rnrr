@@ -1,0 +1,24 @@
+# Default setup, with each character grouped by the same difficulty
+# Rookie
+XGL0 RS2V WS6M # Snake
+DGL0 RSYV WS6M # Hawk
+XGLH RS!V WS6M # Ivan
+DGLH RS6V WS6M # Katarina
+XGM0 RSKV WS6M # Jake
+DGM0 RSFV WS6M # Tarquinn
+
+# Veteran
+5GLW RS2V WS6M
+NGLW RSYV WS6M
+5GLC RS!V WS6M
+NGLC RS6V WS6M
+5GMW RSKV WS6M
+NGMW RSFV WS6M
+
+# Warrior
+DGL8 RS2V WS6M
+XGL8 RSYV WS6M
+DGLR RS!V WS6M
+XGLR RS6V WS6M
+DGM8 RSKV WS6M
+XGM8 RSFV WS6M

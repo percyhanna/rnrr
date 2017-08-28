@@ -1,0 +1,20 @@
+# Marauder and Dirt Devil, grouped by color
+# Black
+XQL0 RS2X WS6M
+XQ30 RS2X 0S6M
+
+# Blue
+XLL0 RS2Y WS6M
+XL30 RS2Y 0S6M
+
+# Red
+XGL0 RS2V WS6M
+XG30 RS2V 0S6M
+
+# Green
+XBL0 RS2W WS6M
+XB30 RS2W 0S6M
+
+# Yellow
+X7L0 RS21 WS6M
+X730 RS21 0S6M
