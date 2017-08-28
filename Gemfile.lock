@@ -1,0 +1,13 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    bitset (1.0.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bitset
+
+BUNDLED WITH
+   1.15.4
