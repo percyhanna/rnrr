@@ -156,8 +156,6 @@ Where `PPP` is one of:
 * **`101`**: Planet 4
 * **`010`**: Planet 5
 
-`L` is an unknown value. The only pattern I've found is that it represents the last planet in the selected difficulty level. If the player is on the last planet, the value is `0`, otherwise it's `1`.
-
 ## Car Info
 
 ### Vehicle Color
