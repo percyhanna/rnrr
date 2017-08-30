@@ -16,8 +16,7 @@ _____ _____  _____ _____    _____ _____  _____ _____    _____ _____  _____ _____
 Each bit represents a value. Most values require more than 1 bit. The following legend is used to determine what each
 bit represents.
 
-* **`K`**: Checksum bit. Some form of hashing/checksum value to "validate" the password, to prevent simple "hacking" of
-  a password.
+* **`K`**: Checksum bit. An XOR checksum of the main player data bits to validate the password prevent simple "hacking" of passwords.
 * **`D`**: Difficulty level.
 * **`H`**: Money: 100s digit.
 * **`T`**: Money: 10s digit.
