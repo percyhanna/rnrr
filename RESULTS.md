@@ -37,7 +37,36 @@ bit represents.
 
 **Pattern:**
 ```
-_____ _____  _____ _DDHH    HHTTT TOOOO  CCCBP PPRRR    VVVAA KKIIE  EJJJM MMSSS
+KKKKK KKKKK  KKKKK KDDHH    HHTTT TOOOO  CCCBP PPRRR    VVVAA KKIIE  EJJJM MMSSS
+```
+
+## Hash Analysis
+
+To validate a password, there appears to be some checksum/hashing algorithm involved.
+
+### Bit Change Patterns
+
+Whenever the following bits are changed, it affects a single hash bit, indicated below. It seems the first 16 bits
+are checksum bits. The direct relationship between the bits changing means we're likely dealing with a simple XOR type checksum.
+
+**Value Bits:**
+```
+_____ _____  _____ _0123    45678 9ABCD  EF012 34567    89ABC DEF01  23456 789AB
+```
+
+**Hash Bits:**
+```
+01234 56789  ABCDE F____    _____ _____  _____ _____    _____ _____  _____ _____
+```
+
+After some analysis and testing of multiple codes, it appears all value bits in the code are merely XOR'd to generate the hash bit. There is also an initial bit value of:
+
+```
+# 5-bit bytes
+10000 00110  11000 0
+
+# 8-bit bytes
+1000 0001  1011 0000
 ```
 
 ## Difficulty

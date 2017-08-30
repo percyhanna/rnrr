@@ -113,7 +113,6 @@ class PlayerState
   }.freeze
 
   CODEC = {
-    hash: 16,
     difficulty_level: 2,
     money_hundreds: 4,
     money_tens: 4,
@@ -133,6 +132,7 @@ class PlayerState
   }.freeze
 
   RNRR_BASE_32 = %w(B C D F G H J K L M N P Q R S T V W X Y Z 0 1 2 3 4 5 6 7 8 9 !).freeze
+  HASH_INITIAL = '1000000110110000'.chars.map { |c| c.to_i(2) }.freeze
 
   def initialize
     @props = {}
@@ -152,31 +152,39 @@ class PlayerState
     self.money_hundreds = dollars % 1_000 / 100
   end
 
-  def hash_value
-    0
+  def to_s
+    encoded.each_slice(4).map(&:join).join(' ')
   end
 
-  def to_s
-    binary = CODEC.map do |key, bits|
+  private
+
+  def encoded
+    data = player_data
+    hash = generate_hash(data)
+    bits = hash + data
+
+    bits.map(&:to_s).each_slice(5).map do |slice|
+      index = slice.join('').to_i(2)
+
+      RNRR_BASE_32[index]
+    end
+  end
+
+  def generate_hash(data)
+    slices = data.each_slice(16).to_a
+    tuples = HASH_INITIAL.zip(*slices)
+
+    tuples.map do |tuple|
+      tuple.map(&:to_i).inject(&:^)
+    end
+  end
+
+  def player_data
+    CODEC.map do |key, bits|
       method = "#{key}_value"
       value = self.send(method)
 
-      value.to_s(2).rjust(bits, '0')
-    end.join('')
-
-    binary.chars.each_slice(5).map do |slice|
-      RNRR_BASE_32[slice.join('').to_i(2)]
-    end.each_slice(4).map(&:join).join(' ')
+      value.to_s(2).rjust(bits, '0').chars.map { |c| c.to_i(2) }
+    end.flatten
   end
 end
-
-p = PlayerState.new
-
-p.difficulty_level = :warrior
-puts p.difficulty_level
-
-p.money = 123
-puts p.money
-
-puts p.inspect
-puts p.to_s
