@@ -6,6 +6,7 @@ XGLH RS!V WS6M # Ivan
 DGLH RS6V WS6M # Katarina
 XGM0 RSKV WS6M # Jake
 DGM0 RSFV WS6M # Tarquinn
+RM10 RSTV XWJ! # Olaf
 
 # Veteran
 5GLW RS2V WS6M

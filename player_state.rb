@@ -67,7 +67,7 @@ class PlayerState
     9 => 0x5,
   }.freeze
 
-  CHARACTER = build_hash(%i(tarquinn jake _ _ cyberhawk snake katarina ivan))
+  CHARACTER = build_hash(%i(tarquinn jake _ olaf cyberhawk snake katarina ivan))
 
   DIVISION = build_hash(%i(A B))
   PLANET = {
