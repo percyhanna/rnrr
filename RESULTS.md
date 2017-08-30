@@ -16,87 +16,59 @@ _____ _____  _____ _____    _____ _____  _____ _____    _____ _____  _____ _____
 Each bit represents a value. Most values require more than 1 bit. The following legend is used to determine what each
 bit represents.
 
-* **`V`**: Checksum bit. Some form of hashing/checksum value to "validate" the password, to prevent simple "hacking" of
+* **`K`**: Checksum bit. Some form of hashing/checksum value to "validate" the password, to prevent simple "hacking" of
   a password.
-* **`C`**: Character. Which character you are.
 * **`D`**: Difficulty level.
+* **`H`**: Money: 100s digit.
+* **`T`**: Money: 10s digit.
+* **`O`**: Money: 1s digit.
+* **`C`**: Character. Which character you are.
+* **`B`**: Division A/B.
+* **`P`**: Planet
 * **`R`**: Vehicle Color.
-* **`J`**: Jump/Nitro car mod.
-* **`S`**: Shooter car mod.
-* **`T`**: Vehicle type. (TBC)
-* **`X`**: Unknown, but likely car related.
-* **`?`**: Possibly a hash? A value that changed seemingly unrelated to other changes. Could be some random hash bits.
+* **`V`**: Vehicle type.
+* **`A`**: Armor upgrade.
+* **`K`**: Shock upgrade.
+* **`I`**: Tire upgrade.
+* **`E`**: Engine upgrade.
+* **`J`**: Jump/Nitro quantity.
+* **`M`**: Mine quantity.
+* **`S`**: Shooter quantity.
 
-### Total Pattern
-
+**Pattern:**
 ```
-_____ _____  _____ _DDHH    HHTTT TOOOO  CCC__ __RRR    TTTXX XXXXX  XJJJD DDSSS
-```
-
-## Character and Difficulty
-
-Character and Difficulty are the simplest to parse since they can be easily enumerated without any gameplay. By
-enumerating over each character/difficulty combination, and comparing the differences, the following bits were
-discuvered:
-
-```
-VV___ _____  ____V VDD__    _____ _____  CCC__ _____    _____ _____  _____ _____
+_____ _____  _____ _DDHH    HHTTT TOOOO  CCCBP PPRRR    VVVAA KKIIE  EJJJM MMSSS
 ```
 
-## Color
+## Difficulty
 
-```
-_____ VVV__  _____ _____    _____ _____  _____ __RRR    _____ _____  _____ _____
-```
+Where `DD` is one of:
 
-## Car Mods
-
-A fully loaded Battle Trak is: `92J!`, or `11110 10111  00110 11111`.
-
-### Vertical/Booster
-
-Quantity is stored in:
-
-```
-_____ _____  _____ _____    _____ _____  _____ _____    _____ _____  _JJJ_ _____
-```
-
-### Shooter
-
-```
-_____ _____  _____ _____    _____ _____  _____ _____    _____ _____  _____ __SSS
-```
-
-### Dropper
-
-```
-_____ _____  _____ _____    _____ _____  _____ _____    _____ _____  ____D DD___
-```
+* **`00`**: Veteran
+* **`01`**: Rookie
+* **`10`**: Unknown
+* **`11`**: Warrior
 
 ## Money
 
 Money is encoded as individual digits for 1s, 10s, and 100s. Each digit uses 4 bits to signify the appropriate number.
 
-* The 6th byte appears to encode the 1s digit.
-* The 5th byte appears to encode the 10s digit.
-* The 5th byte appears to encode the 10s digit.
-
 ```
-_____ _____  _____ ___HH    HHTTT TOOOO  _____ _____    _____ _____  ____D DD___
+_____ _____  _____ ___HH    HHTTT TOOOO  _____ _____    _____ _____  _____ _____
 ```
 
-**1s**
+**100s**
 ```
-1100 # 0
-1101 # 1
-1110 # 2
-1111 # 3
-1000 # 4
-1001 # 5
-1010 # 6
-1011 # 7
-0100 # 8
-0101 # 9
+0101 # 0
+0100 # 1
+0111 # 2
+0110 # 3
+0001 # 4
+0000 # 5
+0011 # 6
+0010 # 7
+____ # 8 Unknown
+____ # 9 Unknown
 ```
 
 **10s**
@@ -113,44 +85,120 @@ _____ _____  _____ ___HH    HHTTT TOOOO  _____ _____    _____ _____  ____D DD___
 0011 # 9
 ```
 
-**100s**
+**1s**
 ```
-0101 # 0
-0100 # 1
-0111 # 2
-0110 # 3
-0001 # 4
-0000 # 5
-0011 # 6
-0010 # 7
+1100 # 0
+1101 # 1
+1110 # 2
+1111 # 3
+1000 # 4
+1001 # 5
+1010 # 6
+1011 # 7
+0100 # 8
+0101 # 9
 ```
 
-## Value Lookups
+## Character
 
-### Difficulty
+Where `CCC` is one of:
 
-* **`01`**: Rookie
-* **`00`**: Veteran
-* **`11`**: Warrior
-
-### Character
-
-* **`101`**: Snake
-* **`100`**: Cyberhawk
-* **`111`**: Ivan
-* **`110`**: Katarina
-* **`001`**: Jake
 * **`000`**: Tarquinn
+* **`001`**: Jake
+* **`010`**: Unknown (Olaf?)
+* **`011`**: Unknown (Olaf?)
+* **`100`**: Cyberhawk
+* **`101`**: Snake
+* **`110`**: Katarina
+* **`111`**: Ivan
+
+## Division and Planet
+
+Where `B` is one of:
+
+* **`0`**: Division A
+* **`1`**: Division B
+
+Where `PPP` is one of:
+
+* **`110`**: Planet 1
+* **`111`**: Planet 2
+* **`100`**: Planet 3
+* **`101`**: Planet 4
+* **`010`**: Planet 5
+
+`L` is an unknown value. The only pattern I've found is that it represents the last planet in the selected difficulty level. If the player is on the last planet, the value is `0`, otherwise it's `1`.
+
+## Car Info
 
 ### Vehicle Color
 
-* **`010`**: Black
-* **`011`**: Blue
 * **`000`**: Red
 * **`001`**: Green
+* **`010`**: Black
+* **`011`**: Blue
+* **`100`**: Unknown
+* **`101`**: Unknown
 * **`110`**: Yellow
+* **`111`**: Unknown
+
+### Vehicle Type
+
+Where `VVV` is one of:
+
+* **`011`**: Air Blade
+* **`100`**: Marauder
+* **`101`**: Dirt Devil
+* **`110`**: HAVAC
+* **`111`**: Battle Trak
+
+### Armor Upgrade
+
+Where `AA` is one of:
+
+* **`01`**: Level A
+* **`00`**: Level B
+* **`11`**: Level C
+* **`10`**: Level D
+
+### Shock Upgrade
+
+Where `KK` is one of:
+
+* **`01`**: Level A
+* **`00`**: Level B
+* **`11`**: Level C
+* **`10`**: Level D
+
+### Tire Upgrade
+
+Where `II` is one of:
+
+* **`11`**: Level A
+* **`10`**: Level B
+* **`01`**: Level C
+* **`00`**: Level D
+
+### Engine Upgrade
+
+Where `EE` is one of:
+
+* **`01`**: Level A
+* **`00`**: Level B
+* **`11`**: Level C
+* **`10`**: Level D
 
 ### Jump/Nitro
+
+* **`101`**: 1 (+0)
+* **`110`**: 2 (+1)
+* **`111`**: 3 (+2)
+* **`000`**: 4 (+3)
+* **`001`**: 5 (+4)
+* **`010`**: 6 (+5)
+* **`011`**: 7 (+6)
+
+### Mine
 
 * **`101`**: 1 (+0)
 * **`110`**: 2 (+1)
@@ -168,14 +216,4 @@ _____ _____  _____ ___HH    HHTTT TOOOO  _____ _____    _____ _____  ____D DD___
 * **`100`**: 4 (+3)
 * **`101`**: 5 (+4)
 * **`110`**: 6 (+5)
-* **`111`**: 7 (+6) TBC
-
-### Dropper
-
-* **`101`**: 1 (+0)
-* **`110`**: 2 (+1)
-* **`111`**: 3 (+2)
-* **`000`**: 4 (+3)
-* **`001`**: 5 (+4)
-* **`010`**: 6 (+5) TBC
-* **`011`**: 7 (+6) TBC
+* **`111`**: 7 (+6)
