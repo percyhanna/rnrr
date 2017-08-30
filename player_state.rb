@@ -1,26 +1,29 @@
 class PlayerState
   def self.build_hash(values)
-    values.each_with_index.reduce({}) { |hash, (value, i)| hash[i] = value if value != :_; hash }.freeze
+    values.each_with_index.reduce({}) do |hash, (value, i)|
+      hash[value] = i if value != :_
+      hash
+    end.freeze
+  end
+
+  def self.build_numeric_hash(values)
+    build_hash(values.map { |n| n ? n.to_i : n })
   end
 
   def self.define_prop(name)
     getter = name.to_s.downcase.to_sym
-    value_getter = "#{getter}_value"
-    setter_name = "#{getter}="
-    hash = PlayerState.const_get("#{name}_LOOKUP")
+    ivar_name = "@#{getter}".to_sym
+    value_getter = "#{getter}_value".to_sym
+    hash = PlayerState.const_get(name)
 
-    define_method(getter) do
-      @props[getter]
-    end
+    attr_accessor(getter)
 
     define_method(value_getter) do
-      hash[@props[getter]]
-    end
+      value = self.send(getter)
 
-    define_method(setter_name) do |value|
-      raise ArgumentError, "invalid #{getter} value: #{value.inspect}" unless hash.key?(value)
+      raise ArgumentError, "invalid #{value_getter} value: #{value.inspect}" unless hash.key?(value)
 
-      @props[getter] = value
+      hash[value]
     end
   end
 
@@ -28,51 +31,51 @@ class PlayerState
   DIFFICULTY_LEVEL = build_hash(%i(veteran rookie _ warrior))
 
   MONEY_HUNDREDS = {
-    0x5 => 0,
-    0x4 => 1,
-    0x7 => 2,
-    0x6 => 3,
-    0x1 => 4,
-    0x0 => 5,
-    0x3 => 6,
-    0x2 => 7,
+    0 => 0x5,
+    1 => 0x4,
+    2 => 0x7,
+    3 => 0x6,
+    4 => 0x1,
+    5 => 0x0,
+    6 => 0x3,
+    7 => 0x2,
     # 8 unknown
     # 9 unknown
   }.freeze
   MONEY_TENS = {
-    0xa => 0,
-    0xb => 1,
-    0x8 => 2,
-    0x9 => 3,
-    0xe => 4,
-    0xf => 5,
-    0xc => 6,
-    0xd => 7,
-    0x2 => 8,
-    0x3 => 9,
+    0 => 0xa,
+    1 => 0xb,
+    2 => 0x8,
+    3 => 0x9,
+    4 => 0xe,
+    5 => 0xf,
+    6 => 0xc,
+    7 => 0xd,
+    8 => 0x2,
+    9 => 0x3,
   }.freeze
   MONEY_ONES = {
-    0xc => 0,
-    0xd => 1,
-    0xe => 2,
-    0xf => 3,
-    0x8 => 4,
-    0x9 => 5,
-    0xa => 6,
-    0xb => 7,
-    0x4 => 8,
-    0x5 => 9,
+    0 => 0xc,
+    1 => 0xd,
+    2 => 0xe,
+    3 => 0xf,
+    4 => 0x8,
+    5 => 0x9,
+    6 => 0xa,
+    7 => 0xb,
+    8 => 0x4,
+    9 => 0x5,
   }.freeze
 
   CHARACTER = build_hash(%i(tarquinn jake _ _ cyberhawk snake katarina ivan))
 
   DIVISION = build_hash(%i(A B))
   PLANET = {
-    0x6 => 0,
-    0x7 => 1,
-    0x4 => 2,
-    0x5 => 3,
-    0x2 => 4,
+    0 => 0x6,
+    1 => 0x7,
+    2 => 0x4,
+    3 => 0x5,
+    4 => 0x2,
   }
 
   COLOR = build_hash(%i(red green black blue _ _ yellow _))
@@ -83,9 +86,9 @@ class PlayerState
   TIRE = build_hash(%i(D C B A))
   ENGINE = build_hash(%i(B A D C))
 
-  NITRO = build_hash(%w(4 5 6 7 _ 1 2 3).map(&:to_i))
-  MINE = build_hash(%w(4 5 6 7 _ 1 2 3).map(&:to_i))
-  GUN = build_hash(%w(_ 1 2 3 4 5 6 7).map(&:to_i))
+  NITRO = build_numeric_hash(%w(4 5 6 7 _ 1 2 3))
+  MINE = build_numeric_hash(%w(4 5 6 7 _ 1 2 3))
+  GUN = build_numeric_hash(%w(_ 1 2 3 4 5 6 7))
 
   constants.each do |name|
     const = PlayerState.const_get(name)
@@ -96,10 +99,10 @@ class PlayerState
   end
 
   DEFAULT_VALUES = {
-    difficulty_level: :rookie,
+    difficulty_level: :warrior,
     money: 100,
-    character: :snake,
-    division: :A,
+    character: :cyberhawk,
+    division: :B,
     planet: 0,
     color: :red,
     vehicle: :havac,
