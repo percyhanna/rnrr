@@ -1,4 +1,4 @@
-# Results
+# Rock'n'Roll Racing Password Generator
 
 ## Base Point
 
