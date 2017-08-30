@@ -1,0 +1,79 @@
+J5YH Z70B XWJ! # Bogmire, Div A - Rookie
+S5YC Z70B XWJ! # Bogmire, Div A - Veteran
+15YR Z70B XWJ! # Bogmire, Div A - Warrior
+Q40H HT23 XWJ! # Bogmire, Div B - Rookie
+JPFC YG2B XWJ! # Bogmire, Div B - Veteran
+9PFR 7G2B XWJ! # Bogmire, Div B - Warrior
+HQWH T80V XWJ! # Chem IV, Div A - Rookie
+RQWC T80V XWJ! # Chem IV, Div A - Veteran
+0QWR T80V XWJ! # Chem IV, Div A - Warrior
+G!!H JN03 XWJ! # Drakonis, Div A - Rookie
+Q!!C JN03 XWJ! # Drakonis, Div A - Veteran
+Z!!R JN03 XWJ! # Drakonis, Div A - Warrior
+Q40H HT23 XWJ! # Drakonis, Div B - Rookie
+G40C HT23 XWJ! # Drakonis, Div B - Veteran
+740R HT23 XWJ! # Drakonis, Div B - Warrior
+W5YR Z723 XWJ! # Inferno, Div A - Warrior
+45YR Z713 XWJ! # Inferno, Div B - Warrior
+L5YC Z7ZV XWJ! # NHO, Div A    - Veteran
+V5YR Z7ZV XWJ! # NHO, Div A    - Warrior
+B5YC Z71C XWJ! # NHO, Div B    - Veteran
+35YR 271V XWJ! # NHO, Div B    - Warrior
+T5YC Z70L XWJ! # New Mojave, Div A - Veteran
+25YR Z70L XWJ! # New Mojave, Div A - Warrior
+K5YC Z72L XWJ! # New Mojave, Div B - Veteran
+!5YR Z72L XWJ! # New Mojave, Div B - Warrior
+
+
+J5YH Z70B XWJ! # Bogmire, Div A - Rookie
+S5YC Z70B XWJ! # Bogmire, Div A - Veteran
+15YR Z70B XWJ! # Bogmire, Div A - Warrior
+HQWH T80V XWJ! # Chem IV, Div A - Rookie
+RQWC T80V XWJ! # Chem IV, Div A - Veteran
+0QWR T80V XWJ! # Chem IV, Div A - Warrior
+G!!H JN03 XWJ! # Drakonis, Div A - Rookie
+Q!!C JN03 XWJ! # Drakonis, Div A - Veteran
+Z!!R JN03 XWJ! # Drakonis, Div A - Warrior
+W5YR Z723 XWJ! # Inferno, Div A - Warrior
+L5YC Z7ZV XWJ! # NHO, Div A    - Veteran
+V5YR Z7ZV XWJ! # NHO, Div A    - Warrior
+T5YC Z70L XWJ! # New Mojave, Div A - Veteran
+25YR Z70L XWJ! # New Mojave, Div A - Warrior
+
+Q40H HT23 XWJ! # Bogmire, Div B - Rookie
+JPFC YG2B XWJ! # Bogmire, Div B - Veteran
+9PFR 7G2B XWJ! # Bogmire, Div B - Warrior
+Q40H HT23 XWJ! # Drakonis, Div B - Rookie
+G40C HT23 XWJ! # Drakonis, Div B - Veteran
+740R HT23 XWJ! # Drakonis, Div B - Warrior
+45YR Z713 XWJ! # Inferno, Div B - Warrior
+B5YC Z71C XWJ! # NHO, Div B    - Veteran
+35YR 271V XWJ! # NHO, Div B    - Warrior
+K5YC Z72L XWJ! # New Mojave, Div B - Veteran
+!5YR Z72L XWJ! # New Mojave, Div B - Warrior
+
+J5YH Z70B XWJ! # Div A - Bogmire - Rookie
+S5YC Z70B XWJ! # Div A - Bogmire - Veteran
+15YR Z70B XWJ! # Div A - Bogmire - Warrior
+HQWH T80V XWJ! # Div A - Chem IV - Rookie
+RQWC T80V XWJ! # Div A - Chem IV - Veteran
+0QWR T80V XWJ! # Div A - Chem IV - Warrior
+G!!H JN03 XWJ! # Div A - Drakonis - Rookie
+Q!!C JN03 XWJ! # Div A - Drakonis - Veteran
+Z!!R JN03 XWJ! # Div A - Drakonis - Warrior
+W5YR Z723 XWJ! # Div A - Inferno - Warrior
+L5YC Z7ZV XWJ! # Div A - NHO    - Veteran
+V5YR Z7ZV XWJ! # Div A - NHO    - Warrior
+T5YC Z70L XWJ! # Div A - New Mojave - Veteran
+25YR Z70L XWJ! # Div A - New Mojave - Warrior
+Q40H HT23 XWJ! # Div B - Bogmire - Rookie
+JPFC YG2B XWJ! # Div B - Bogmire - Veteran
+9PFR 7G2B XWJ! # Div B - Bogmire - Warrior
+Q40H HT23 XWJ! # Div B - Drakonis - Rookie
+G40C HT23 XWJ! # Div B - Drakonis - Veteran
+740R HT23 XWJ! # Div B - Drakonis - Warrior
+45YR Z713 XWJ! # Div B - Inferno - Warrior
+B5YC Z71C XWJ! # Div B - NHO    - Veteran
+35YR 271V XWJ! # Div B - NHO    - Warrior
+K5YC Z72L XWJ! # Div B - New Mojave - Veteran
+!5YR Z72L XWJ! # Div B - New Mojave - Warrior

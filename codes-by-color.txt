@@ -1,8 +1,8 @@
 # Snake/Rookie/Marauder
-XQL0 RS2X WS6M # Black
-XLL0 RS2Y WS6M # Blue
-XGL0 RS2V WS6M # Red
-XBL0 RS2W WS6M # Green
+XQL0 RS2X WS6M # Black 
+XLL0 RS2Y WS6M # Blue  
+XGL0 RS2V WS6M # Red   
+XBL0 RS2W WS6M # Green 
 X7L0 RS21 WS6M # Yellow
 
 # Snake/Rookie/Dirt Devil

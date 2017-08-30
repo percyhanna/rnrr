@@ -18,3 +18,10 @@ XB30 RS2W 0S6M
 # Yellow
 X7L0 RS21 WS6M
 X730 RS21 0S6M
+
+# Yellow with other types
+X7L0 RS21 WS6M # Marauder
+X730 RS21 0S6M # Dirt Devil
+05QV !ZZ1 RS6M # Air Blade
+5DYV ZGZ1 92J! # Battle Trak
+ZG7V CZZ1 4S6M # HAVAC

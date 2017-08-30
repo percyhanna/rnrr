@@ -1,0 +1,10 @@
+XGL0 RS2V WS6M # part 1 of planet 1 11 10
+XFDW S60V WS6M # part 2 of planet 1 01 10
+6!!W R429 RJ6Q # part 1 of planet 2 11 11
+Y26W M609 RJ6Q # part 2 of planet 2 01 11
+3KWW C92J RJ6Q # part 1 of planet 3 11 00
+WHGW CL0D 8S8P # part 2 of planet 3 01 00
+4SBW Z52N 8S8P # part 1 of planet 4 11 01
+X0NV MT0N 8S8P # part 2 of planet 4 01 01
+7!7V 7G1X 8S8P # part 1 of planet 5 10 10
+3LLW RGZX 5TF9 # part 2 of planet 5 00 10
