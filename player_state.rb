@@ -39,8 +39,8 @@ class PlayerState
     5 => 0x0,
     6 => 0x3,
     7 => 0x2,
-    # 8 unknown
-    # 9 unknown
+    8 => 0xd,
+    9 => 0xc,
   }.freeze
   MONEY_TENS = {
     0 => 0xa,
