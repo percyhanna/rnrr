@@ -1,3 +1,5 @@
+require 'bitset'
+
 class PlayerState
   def self.build_hash(values)
     values.each_with_index.reduce({}) do |hash, (value, i)|
@@ -12,9 +14,9 @@ class PlayerState
 
   def self.define_prop(name)
     getter = name.to_s.downcase.to_sym
-    ivar_name = "@#{getter}".to_sym
     value_getter = "#{getter}_value".to_sym
     hash = PlayerState.const_get(name)
+    inverted = PlayerState.const_get("#{name}_LOOKUP")
 
     attr_accessor(getter)
 
@@ -24,6 +26,12 @@ class PlayerState
       raise ArgumentError, "invalid #{value_getter} value: #{value.inspect}" unless hash.key?(value)
 
       hash[value]
+    end
+
+    define_method("#{value_getter}=") do |value|
+      raise ArgumentError, "invalid #{value_getter} value: #{value.inspect}" unless inverted.key?(value)
+
+      self.send("#{getter}=", inverted[value])
     end
   end
 
@@ -114,6 +122,7 @@ class PlayerState
     mine: 7,
     gun: 7,
   }.freeze
+  KEYS = DEFAULT_VALUES.keys.freeze
 
   CODEC = {
     difficulty_level: 2,
@@ -134,8 +143,45 @@ class PlayerState
     gun: 3,
   }.freeze
 
+  DATA_SIZE = 60
+  CHAR_SIZE = 5
   RNRR_BASE_32 = %w(B C D F G H J K L M N P Q R S T V W X Y Z 0 1 2 3 4 5 6 7 8 9 !).freeze
   HASH_INITIAL = '1000000110110000'.chars.map { |c| c.to_i(2) }.freeze
+
+  def self.parse(code)
+    bitset = decode(code)
+    hash = bitset.take(16)
+    bits = bitset.drop(16).map { |b| b ? 1 : 0 }
+
+    player = new
+
+    offset = 0
+    CODEC.each do |key, length|
+      key_bits = bits.take(length)
+      bits = bits.drop(length)
+
+      player.send("#{key}_value=", key_bits.join.to_i(2))
+    end
+
+    player
+  end
+
+  def self.decode(code)
+    code = code.gsub(/\s/, '')[0..11]
+    bitset = Bitset.new(DATA_SIZE)
+
+    code.chars.each_with_index do |char, index|
+      bits = RNRR_BASE_32.index(char)
+
+      CHAR_SIZE.times do |i|
+        bit = (bits & (2 ** (CHAR_SIZE - i - 1))) != 0
+
+        bitset[index * 5 + i] = bit
+      end
+    end
+
+    bitset
+  end
 
   def initialize
     @props = {}
@@ -153,6 +199,10 @@ class PlayerState
     self.money_ones = dollars % 10
     self.money_tens = dollars % 100 / 10
     self.money_hundreds = dollars % 1_000 / 100
+  end
+
+  def attributes
+    KEYS.inject({}) { |hash, key| hash.update(key => self.send(key)) }
   end
 
   def to_s
